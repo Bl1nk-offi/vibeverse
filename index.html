@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#090812">
+    <title>VIBEVERSE — Мир новых возможностей</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            color: #fff;
+            background: #090812;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .background-glow {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background:
+                radial-gradient(ellipse at 15% 20%, #5424a044, transparent 40%),
+                radial-gradient(ellipse at 85% 60%, #7928a033, transparent 40%),
+                #090812;
+        }
+
+        /* Навигация */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: #090812dd;
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid #ffffff12;
+        }
+
+        nav {
+            max-width: 1150px;
+            min-height: 75px;
+            margin: auto;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            color: #c4a5ff;
+            text-shadow: 0 0 20px #925cff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #c9c2dc;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #c4a5ff;
+        }
+
+        .menu-button {
+            display: none;
+            border: 0;
+            background: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        /* Главный экран */
+
+        .hero {
+            max-width: 1150px;
+            min-height: 650px;
+            margin: auto;
+            padding: 100px 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .tag {
+            padding: 10px 18px;
+            margin-bottom: 25px;
+            color: #c9aaff;
+            background: #925cff20;
+            border: 1px solid #925cff66;
+            border-radius: 50px;
+            font-size: 13px;
+        }
+
+        .hero h1 {
+            max-width: 850px;
+            font-size: clamp(42px, 8vw, 82px);
+            line-height: 1.1;
+            letter-spacing: -2px;
+        }
+
+        .gradient-text {
+            color: #c4a5ff;
+            background: linear-gradient(90deg, #a47aff, #e1c9ff, #925cff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            max-width: 600px;
+            margin-top: 25px;
+            color: #aaa2bf;
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 35px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 15px 28px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .button-primary {
+    color: white;
+    background: linear-gradient(90deg, #7045ff, #a34bff);
+    box-shadow: 0 0 25px #925cff55;
+
+
+
+ox-shadow: 0 0 25px #925cff55;
+        }
+
+        .button-secondary {
+            border: 1px solid #925cff88;
+            color: #d6c5ff;
+        }
+
+        .button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0 35px #925cff88;
+        }
+
+        /* Общие секции */
+
+        section {
+            max-width: 1150px;
+            margin: auto;
+            padding: 90px 25px;
+        }
+
+        .section-title {
+            margin-bottom: 15px;
+            font-size: 38px;
+            text-align: center;
+        }
+
+        .section-description {
+            margin-bottom: 45px;
+            color: #aaa2bf;
+            text-align: center;
+            line-height: 1.7;
+        }
+
+        /* Карточки проектов */
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .project-card {
+            min-height: 230px;
+            padding: 28px;
+            background: #1b1630cc;
+            border: 1px solid #925cff44;
+            border-radius: 20px;
+            transition: 0.35s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: #b18aff;
+            box-shadow: 0 0 35px #925cff33;
+        }
+
+        .project-icon {
+            margin-bottom: 25px;
+            font-size: 35px;
+        }
+
+        .project-card h3 {
+            margin-bottom: 12px;
+            color: #d5c3ff;
+            font-size: 20px;
+        }
+
+        .project-card p {
+            color: #aaa2bf;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        /* Обо мне */
+
+        .about-box {
+            padding: 45px;
+            background: #1b1630aa;
+            border: 1px solid #925cff44;
+            border-radius: 22px;
+            text-align: center;
+        }
+
+        .about-box p {
+            max-width: 750px;
+            margin: auto;
+            color: #bcb4d0;
+            font-size: 16px;
+            line-height: 1.9;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .skill {
+            padding: 11px 18px;
+            color: #d6c5ff;
+            background: #925cff22;
+            border: 1px solid #925cff55;
+            border-radius: 50px;
+            font-size: 14px;
+        }
+
+        /* Контакты */
+
+        .contact-box {
+            max-width: 650px;
+            margin: auto;
+            padding: 35px;
+            background: #1b1630cc;
+            border: 1px solid #925cff55;
+            border-radius: 22px;
+        }
+
+        .contact-box input,
+        .contact-box textarea {
+            width: 100%;
+            margin-bottom: 17px;
+            padding: 15px;
+            color: white;
+            background: #090812;
+            border: 1px solid #7045ff66;
+            border-radius: 10px;
+            outline: none;
+            font: inherit;
+        }
+
+        .contact-box input:focus,
+        .contact-box textarea:focus {
+            border-color: #b18aff;
+        }
+
+        .contact-box textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .contact-box button {
+            width: 100%;
+            border: none;
+        }
+
+        #formMessage {
+            margin-top: 15px;
+            color: #c4a5ff;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        /* Подвал */
+
+        footer {
+            padding: 30px 20px;
+            border-top: 1px solid #ffffff15;
+            color: #8f87a3;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        /* Появление элементов */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Мобил
+
+
+ьная версия */
+
+        @medio max-width: 700px {
+            nav {
+                min-height: 65px;
+            }
+
+            .menu-button {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 65px;
+                left: 0;
+                right: 0;
+                padding: 25px;
+                flex-direction: column;
+                background: #100c20;
+                border-bottom: 1px solid #925cff55;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .hero {
+                min-height: 570px;
+                padding: 80px 20px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .hero-buttons {
+                width: 100%;
+            }
+
+            .hero-buttons .button {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            section {
+                padding: 65px 20px;
+            }
+
+            .section-title {
+                font-size: 30px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-box,
+            .contact-box {
+                padding: 25px 18px;
+            }
+        }
+
+        @medio max-width: 360px {
+            .logo {
+                font-size: 19px;
+            }
+
+            .hero h1 {
+                font-size: 39px;
+            }
+
+            .section-title {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="background-glow"></div>
+
+    <!-- Навигация -->
+    <header>
+        <nav>
+            <a class="logo" href="#home">VIBEVERSE</a>
+
+            <button class="menu-button" id="menuButton"
+                aria-label="Открыть меню" aria-expanded="false">
+                ☰
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#home">Главная</a>
+                <a href="#projects">Проекты</a>
+                <a href="#about">Обо мне</a>
+                <a href="#contacts">Контакты</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Главный экран -->
+        <section class="hero" id="home">
+            <div class="tag">✦ Добро пожаловать в новую реальность</div>
+
+            <h1>
+                Создавай своё
+                <span class="gradient-text">будущее</span>
+            </h1>
+
+            <p>
+                VIBEVERSE — пространство идей, технологий
+                и творчества. Здесь рождаются новые проекты
+                и открываются новые возможности.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#projects" class="button button-primary">
+                    Смотреть проекты
+                </a>
+
+                <a href="#about" class="button button-secondary">
+                    Узнать больше
+                </a>
+            </div>
+        </section>
+
+        <!-- Проекты -->
+        <section id="projects" class="reveal">
+            <h2 class="section-title">
+                Мои <span class="gradient-text">проекты</span>
+            </h2>
+
+            <p class="section-description">
+                Идеи, которые превращаются в реальные продукты.
+            </p>
+
+            <div class="projects-grid">
+
+                <article class="project-card">
+                    <div class="project-icon">🌌</div>
+                    <h3>VIBEVERSE</h3>
+                    <p>
+                        Футуристическая веб-платформа
+                        с современным дизайном и анимациями.
+                    </p>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-icon">🎮</div>
+                    <h3>Game Studio</h3>
+                    <p>
+                        Пространство для разработки
+                        интерактивных игр и игровых миров.
+
+
+</p>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-icon">🤖</div>
+                    <h3>AI Projects</h3>
+                    <p>
+                        Эксперименты с искусственным
+                        интеллектом и автоматизацией.
+                    </p>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Обо мне -->
+        <section id="about" class="reveal">
+            <h2 class="section-title">
+                Обо <span class="gradient-text">мне</span>
+            </h2>
+
+            <p class="section-description">
+                Создаю, изучаю и экспериментирую.
+            </p>
+
+            <div class="about-box">
+                <p>
+                    Я изучаю программирование, веб-разработку
+                    и искусственный интеллект. Моя цель —
+                    превращать интересные идеи в настоящие
+                    цифровые продукты.
+                </p>
+
+                <div class="skills">
+                    <span class="skill">HTML</span>
+                    <span class="skill">CSS</span>
+                    <span class="skill">JavaScript</span>
+                    <span class="skill">AI</span>
+                    <span class="skill">Web Development</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Контакты -->
+        <section id="contacts" class="reveal">
+            <h2 class="section-title">
+                Связаться <span class="gradient-text">со мной</span>
+            </h2>
+
+            <p class="section-description">
+                Есть идея или предложение? Напиши сообщение.
+            </p>
+
+            <form class="contact-box" id="contactForm">
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Твоё имя"
+                    required
+                >
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Твоя электронная почта"
+                    required
+                >
+
+                <textarea
+                    id="message"
+                    placeholder="Твоё сообщение..."
+                    required
+                ></textarea>
+
+                <button class="button button-primary" type="submit">
+                    Отправить сообщение
+                </button>
+
+                <p id="formMessage"></p>
+            </form>
+        </section>
+
+    </main>
+
+    <footer>
+        © 2026 VIBEVERSE. Создано с помощью ИИ и собственного творчества.
+    </footer>
+
+    <script>
+        // Мобильное меню
+
+        const menuButton = document.getElementById("menuButton");
+        const navLinks = document.getElementById("navLinks");
+
+        menuButton.addEventListener("click", function() {
+            const isOpen = navLinks.classList.toggle("open");
+
+            menuButton.textContent = isOpen ? "×" : "☰";
+            menuButton.setAttribute("aria-expanded", isOpen);
+        });
+
+        // Закрываем меню после выбора раздела
+
+        document.querySelectorAll(".nav-links a").forEach(function(link) {
+            link.addEventListener("click", function() {
+                navLinks.classList.remove("open");
+                menuButton.textContent = "☰";
+                menuButton.setAttribute("aria-expanded", "false");
+            });
+        });
+
+        // Плавное появление разделов при прокрутке
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                }
+            });
+        }, {
+            threshold: 0.12
+        });
+
+        document.querySelectorAll(".reveal").forEach(function(element) {
+            observer.observe(element);
+        });
+
+        // Демонстрационная форма контактов
+
+        const contactForm = document.getElementByI
+
+
+d("contactForm");
+        const formMessage = document.getElementById("formMessage");
+
+        contactForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value;
+
+            formMessage.textContent =
+                "Спасибо, " + name + "! Форма работает в демонстрационном режиме.";
+
+            contactForm.reset();
+        });
+    </script>
+
+</body>
+</html>
